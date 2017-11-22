@@ -19,12 +19,12 @@ app.use(function(req,res,next){
   })
   next();
 });
-app.use(function(req,res){
-  res.render('maintenance.hbs',{
-    pageTitle: 'We\'ll Be Back',
-    welcomeMessage:'Sorry, the website is currently under maintenance. Check again later'
-  })
-});
+// app.use(function(req,res){
+//   res.render('maintenance.hbs',{
+//     pageTitle: 'We\'ll Be Back',
+//     welcomeMessage:'Sorry, the website is currently under maintenance. Check again later'
+//   })
+// });
 app.use(express.static(__dirname + '/public'));
 hbs.registerHelper('getCurrentYear', function(){
   return new Date().getFullYear();
@@ -44,7 +44,12 @@ app.get('/about',function(req,res){
     pageTitle: 'About Page',
   });
 })
-
+app.get('/projects',function(req,res){
+  res.render('projects.hbs',{
+      pageTitle: 'Projects Page',
+      welcomeMessage: 'Welcome to the projects page!'
+  })
+});
 app.get('/bad',function(req,res){
   res.send({
     errorMessage:'Woops, Something went wrong!',
